@@ -1,4 +1,4 @@
-import {addTodoDOM} from "./dom.js";
+import {addTodoDOM, showForm} from "./dom.js";
 import './style.css';
 
 class todoList {
@@ -22,8 +22,14 @@ class todoEntry {
     }
 }
 
-
 let mainList = new todoList("main");
+
+let addformbtn = document.querySelector("#addtodo");
+addformbtn.addEventListener("click", e => {
+    showForm();
+});
+
+
 mainList.addEntry(new todoEntry("yuge"));
 let todo = new todoEntry("make todo");
 mainList.addEntry(todo);

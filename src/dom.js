@@ -4,3 +4,7 @@ export function addTodoDOM(todo){
     todoText.textContent = todo.name;
     todoList.appendChild(todoText);
 }
+
+export function showForm(){
+    document.querySelector("#addform").style.display = "block";
+}

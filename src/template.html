@@ -6,6 +6,29 @@
     <title>Todo</title>
 </head>
 <body>
+    <button id="addtodo">Add Todo</button>
+    <div id="addform">
+        <form action="" method="post">
+            <ul>
+                <li>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="todoname">
+                </li>
+                <li>
+                    <label for="description">Desription:</label>
+                    <input type="text" id="desc" name="tododesc">
+                </li>
+                <li>
+                    <label for="lowprio">Low Priority</label>
+                    <input type="radio" id="lowprio" name="lowpriority">
+                    <label for="midprio">Mid Priority</label>
+                    <input type="radio" id="midprio" name="midpriority">
+                    <label for="highprio">High Priority</label>
+                    <input type="radio" id="highprio" name="highpriority">
+                </li>
+            </ul>
+        </form>
+    </div>
     <div class="todoList"></div>
 </body>
 </html>
