@@ -1,4 +1,4 @@
-import {addTodoDOM, showForm, closeForm, removeTodo} from "./dom.js";
+import {addTodoDOM, showForm, closeForm, removeTodo, showDetails} from "./dom.js";
 import './style.css';
 
 
@@ -8,8 +8,8 @@ class todoList {
         this.name = name;
     }
 
-    addEntry(name, desc){
-        let newTodo = new todoEntry(name, desc);
+    addEntry(name, desc, date){
+        let newTodo = new todoEntry(name, desc, date);
         this.list.push();
         addTodoDOM(newTodo);
     }
@@ -34,13 +34,14 @@ function addTodo(name, desc, date){
     
     let detailbtn = document.getElementById(name + "detailbtn");
     detailbtn.addEventListener("click", () => {
-        showDetails(todoentrydiv);
+        showDetails(desc, date)
     });
     
     let cbox = document.getElementById(name + "cbox");
     cbox.addEventListener("click", () => {
         removeTodo(todoentrydiv);
     });
+
 }
 
 function addButtons(){
@@ -61,6 +62,12 @@ function addButtons(){
         console.log("help");
         e.preventDefault();
         closeForm();
+    });
+
+    let detailBtn = document.querySelector("#closedetailbtn");
+    detailBtn.addEventListener("click", e =>{
+        let detailPane = document.getElementById("detailPane");
+        detailPane.style.display = "none";
     });
 }
 
