@@ -3,30 +3,57 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: antiquewhite;
+    background-color: #E64833;
     min-height: 100vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
 }
 
-.todoList{
+.maindiv{
     display: flex;
-    flex-direction: column;
-    gap: 10px; 
-    padding-left: 10px;
+    flex-direction: row;
+    align-items: stretch;
+
 
     min-height: 80vh;
     min-width: 80vw;
-    border: solid #9d9d9d;
     border-radius: 15px;
 
-    background-color: bisque;
+    box-shadow: 10px 10px 10px rgb(0, 0, 0); 
 }
 
+.todoList {
+    background-color: #FBE9D0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+#sidebar {
+    background-color: #244855;
+    color: #FBE9D0;
+    width: 200px;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+}
+.todoList .todoEntry{
+
+    padding-left: 15px;
+}
 .todoList label{
     padding-left: 10px;
-    font-size: 35px;
+    font-size: 25px;
+}
+
+.todoEntry {
+    display: flex;
+    gap: 10px;
 }
 
 .todoEntry input[type=checkbox]{
+    margin-top: 0px;
     transform: scale(2);
 }
 
@@ -43,22 +70,50 @@ body {
 
 #buttondiv{
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     padding: 10px;
+    border-top-right-radius: 15px;
 }
 
+#addform label {
+    font-size: 20px;
+}
 #addform input {
-    width: 80%;
+    width: 90%;
     clear: both;
+    font-size: 20px;
 }
 
 #addform ul {
     list-style-type: none;
 }
 
-#addtodo {
+.brownbutton {
     border: none;
-    background-color: bisque;
-    padding: 8px;
-    font-size: 20px;
+    background-color: #874F41;
+    color: #FBE9D0;
+    border-radius: 5px;
+}
+
+#addtodo {    
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 8px; 
+    font-size: 40px;
+    line-height: 40px;
+}
+
+.detaildiv {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-left: auto;
+}
+
+.todoEntry .brownbutton {
+    font-size: 15px;
+}
+
+#addtodo:hover{
+    background-color: #244855;
 }

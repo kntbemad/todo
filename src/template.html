@@ -17,15 +17,31 @@
                     <label for="description">Desription:</label>
                     <input type="text" id="desc" name="tododesc">
                 </li>
+                <li>
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="tododate">
+                </li>
             </ul>
             <div id="buttondiv">
                 <button id="submitform">Submit</button>
             </div>
         </form>
     </div>
-    <div class="todoList" id="main">
-        <div id="buttondiv">
-            <button id="addtodo">Add Todo</button>           
+
+    
+
+    <div class="maindiv">
+        <nav id="sidebar">
+            <ul>
+                <li>
+                    Main List
+                </li>
+            </ul>
+        </nav> 
+        <div class="todoList" id="main">
+            <div id="buttondiv">
+                <button class="brownbutton" id="addtodo">+</button>           
+            </div>
         </div>
     </div>
 </body>

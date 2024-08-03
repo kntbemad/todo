@@ -1,4 +1,4 @@
-import {addTodoDOM, showForm, closeForm} from "./dom.js";
+import {addTodoDOM, showForm, closeForm, removeTodo} from "./dom.js";
 import './style.css';
 
 
@@ -16,32 +16,36 @@ class todoList {
 }
 
 class todoEntry {
-    constructor(name, desc){
+    constructor(name, desc, date){
         this.name = name;
         this.desc = desc;
-        this.active = true;
+        this.date = date;
     }
 }
 
-function addTodo(name, desc){
+function addTodo(name, desc, date){
+    //add new todo entry to current list
     let listName = document.querySelector(".todoList").id;
     let currlist = listOfLists.find(e => e.name === listName);
-    currlist.addEntry(name, desc);
+    currlist.addEntry(name, desc, date);
 
+    //add even listener to checkbox that deletes entry when clicked, fades away
     let todoentrydiv = document.getElementById(name + "div");
+    
+    let detailbtn = document.getElementById(name + "detailbtn");
+    detailbtn.addEventListener("click", () => {
+        showDetails(todoentrydiv);
+    });
+    
     let cbox = document.getElementById(name + "cbox");
-    cbox.addEventListener("click", e => {
-        todoentrydiv.style.transition = "opacity 1000ms ease";
-        todoentrydiv.style.opacity = 0;
-        setTimeout(function(){
-            todoentrydiv.parentNode.removeChild(todoentrydiv);
-        }, 900);
-    }); 
+    cbox.addEventListener("click", () => {
+        removeTodo(todoentrydiv);
+    });
 }
 
 function addButtons(){
     let addformbtn = document.querySelector("#addtodo");
-    addformbtn.addEventListener("click", e => {
+    addformbtn.addEventListener("click", () => {
         console.log("what");
         showForm();
     });
@@ -50,7 +54,10 @@ function addButtons(){
     submitbtn.addEventListener("click", e =>{
         let nameformtext = document.getElementById("name").value;
         let descformtext = document.getElementById("desc").value;
-        addTodo(nameformtext, descformtext);
+        let dateform = document.getElementById("date").value;
+
+
+        addTodo(nameformtext, descformtext, dateform);
         console.log("help");
         e.preventDefault();
         closeForm();
