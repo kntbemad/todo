@@ -2,18 +2,63 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    background-color: antiquewhite;
+    min-height: 100vh;
 }
 
 .todoList{
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 85vh;
-    width: 40vh;
+    gap: 10px; 
+    padding-left: 10px;
+
+    min-height: 80vh;
+    min-width: 80vw;
     border: solid #9d9d9d;
     border-radius: 15px;
+
+    background-color: bisque;
 }
 
-#addform{
+.todoList label{
+    padding-left: 10px;
+    font-size: 35px;
+}
+
+.todoEntry input[type=checkbox]{
+    transform: scale(2);
+}
+
+#addformdiv{
     display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border: solid #9d9d9d;
+    background-color: antiquewhite;
+}
+
+#buttondiv{
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+#addform input {
+    width: 80%;
+    clear: both;
+}
+
+#addform ul {
+    list-style-type: none;
+}
+
+#addtodo {
+    border: none;
+    background-color: bisque;
+    padding: 8px;
+    font-size: 20px;
 }
