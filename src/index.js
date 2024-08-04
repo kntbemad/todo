@@ -11,6 +11,7 @@ class todoList {
     addEntry(todo){
         this.list.push(todo);
         addTodoDOM(todo);
+        console.log(todo);
     }
 }
 
@@ -25,11 +26,13 @@ class todoEntry {
 function addTodo(todo){
     //add new todo entry to current list
     currList.addEntry(todo);
-    entryEventHandlers(todo.name, todo.desc);
+    entryEventHandlers(todo);
 }
 
-function entryEventHandlers(name, desc){
-    
+function entryEventHandlers(todo){
+    let name = todo.name;
+    let desc = todo.desc;
+    let date = todo.date;
     //add even listener to checkbox that deletes entry when clicked, fades away
     let todoentrydiv = document.getElementById(name + "div");
     
@@ -49,7 +52,6 @@ function entryEventHandlers(name, desc){
 function addButtons(){
     let addformbtn = document.querySelector("#addtodo");
     addformbtn.addEventListener("click", () => {
-        console.log("what");
         showForm();
     });
 
@@ -60,7 +62,7 @@ function addButtons(){
         let dateform = document.getElementById("date").value;
 
 
-        addTodo(nameformtext, descformtext, dateform);
+        addTodo(new todoEntry(nameformtext, descformtext, dateform));
         console.log("help");
         e.preventDefault();
         closeForm();
