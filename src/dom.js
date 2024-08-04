@@ -1,7 +1,7 @@
 export function addTodoDOM(todo){
     const todoList = document.querySelector(".todoList");
     let newTodo = document.createElement("div");
-    newTodo.id = todo.name + "div";
+    newTodo.id = todo.id + "div";
     newTodo.classList.add("todoEntry");
 
     newTodo.appendChild(addTodoEntry(todo));
@@ -14,10 +14,12 @@ function addTodoEntry(todo){
     let todoCheck = document.createElement("input");
 
     todoCheck.type = "checkbox";
-    todoCheck.id = todo.name + "cbox";
-    todo.name = todo.name;
-    todoText.for = todo.name;
+    todoCheck.id = todo.id + "cbox";
+    
+    todoText.for = todoCheck.id;
     todoText.textContent = todo.name;
+    
+   
     todoEntryDiv.appendChild(todoCheck); 
     todoEntryDiv.appendChild(todoText);
 
@@ -37,7 +39,7 @@ function addDetailBtn(todo){
     detailsbtn.textContent = "details";
     detailsbtn.classList.add("brownbutton"); 
     detailsbtn.classList.add("detailbtn"); 
-    detailsbtn.id = todo.name + "detailbtn";
+    detailsbtn.id = todo.id + "detailbtn";
     detaildiv.classList.add("detaildiv");
     
     detaildiv.appendChild(detailsbtn);
@@ -54,7 +56,8 @@ export function closeForm(){
     document.querySelector("#addformdiv").style.display = "none";
 }
 
-export function removeTodo(todoentrydiv){
+export function removeTodo(todo){
+    let todoentrydiv = document.getElementById(todo.id + "div");
     todoentrydiv.style.transition = "opacity 1000ms ease";
     todoentrydiv.style.opacity = 0;
     setTimeout(function(){
@@ -62,12 +65,12 @@ export function removeTodo(todoentrydiv){
     }, 900);
 }; 
 
-export function showDetails(desc, date){
+export function showDetails(todo){
     //add div to html template, make this show the div;
     let details = document.getElementById("detailPane");
     let descText = document.getElementById("detailDesc");
     let dateText = document.getElementById("detailDate");
-    descText.textContent = desc;
-    dateText.textContent = date; 
+    descText.textContent = todo.desc;
+    dateText.textContent = todo.date; 
     details.style.display = "block";
 }

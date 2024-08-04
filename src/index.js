@@ -17,6 +17,7 @@ class todoList {
 
 class todoEntry {
     constructor(name, desc, date){
+        this.id = currList.list.length;
         this.name = name;
         this.desc = desc;
         this.date = date;
@@ -30,23 +31,30 @@ function addTodo(todo){
 }
 
 function entryEventHandlers(todo){
-    let name = todo.name;
-    let desc = todo.desc;
-    let date = todo.date;
     //add even listener to checkbox that deletes entry when clicked, fades away
-    let todoentrydiv = document.getElementById(name + "div");
     
-    let detailbtn = document.getElementById(name + "detailbtn");
+    let detailbtn = document.getElementById(todo.id + "detailbtn");
     detailbtn.addEventListener("click", () => {
-        showDetails(desc, date)
+        showDetails(todo)
     });
     
-    let cbox = document.getElementById(name + "cbox");
+    let cbox = document.getElementById(todo.id + "cbox");
     cbox.addEventListener("click", () => {
-        removeTodo(todoentrydiv);
-        let elementindex = currList.list.map(e => e.name).indexOf(name);
-        currList.list.splice(elementindex, 1);
+        removeTodo(todo);
+        currList.list.splice(todo.id, 1);
+        updateIDs(todo);
     });
+}
+
+//update IDs of all todoEntries and their DOM element IDs from deleted ID to last entry 
+function updateIDs(todo){
+
+        for(let i = todo.id; i < currList.list.length; i++){
+            let cid = currList.list[i].id;
+            document.getElementById(cid + "div").id = (cid-1) + "div";
+            document.getElementById(cid + "cbox").id = (cid-1) + "cbox";
+            currList.list[i].id -= 1;
+        }
 }
 
 function addButtons(){
@@ -68,8 +76,8 @@ function addButtons(){
         closeForm();
     });
 
-    let detailBtn = document.querySelector("#closedetailbtn");
-    detailBtn.addEventListener("click", e =>{
+    let closedetailBtn = document.querySelector("#closedetailbtn");
+    closedetailBtn.addEventListener("click", e =>{
         let detailPane = document.getElementById("detailPane");
         detailPane.style.display = "none";
     });
@@ -86,7 +94,7 @@ function addList(list){
         list.list.forEach(element => {
             console.log("whATHATTS");
             addTodoDOM(element);
-            entryEventHandlers(element.name, element.desc);
+            entryEventHandlers(element);
         });
     });
     document.querySelector("#sidebarlist").appendChild(listBtn);
