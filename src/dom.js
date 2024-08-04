@@ -36,6 +36,7 @@ function addDetailBtn(todo){
     
     detailsbtn.textContent = "details";
     detailsbtn.classList.add("brownbutton"); 
+    detailsbtn.classList.add("detailbtn"); 
     detailsbtn.id = todo.name + "detailbtn";
     detaildiv.classList.add("detaildiv");
     

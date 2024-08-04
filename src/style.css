@@ -21,23 +21,46 @@ body {
     box-shadow: 10px 10px 10px rgb(0, 0, 0); 
 }
 
-.todoList {
+.maincontainer {
     background-color: #FBE9D0;
     display: flex;
     flex-direction: column;
-    gap: 10px;
     width: 100%;
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
 }
 
 #sidebar {
+    display: flex;
+    flex-direction: column; 
     background-color: #244855;
     color: #FBE9D0;
     width: 200px;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
 }
+
+#sidebarlist{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+#sidebarlist button {
+    border: none;
+    border-radius: 5px;
+    background-color:#FBE9D0;
+    font-size: 20px;
+    width: 50%;
+}
+.todoList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 .todoList .todoEntry{
 
     padding-left: 15px;
@@ -60,13 +83,16 @@ body {
 #detailPane {
     display: none;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 75%;
+    left: 80%;
     transform: translate(-50%, -50%);
     z-index: 1;
     border: solid #9d9d9d;
     background-color: antiquewhite;
-    
+    box-shadow: 5px 5px 5px black; 
+    border-radius: 10px;
+    padding: 20px;
+    margin-right: 10px;
 }
 
 #addformdiv{
@@ -112,8 +138,8 @@ body {
     padding-left: 10px;
     padding-right: 10px;
     padding-bottom: 8px; 
-    font-size: 40px;
-    line-height: 40px;
+    font-size: 30px;
+    line-height: 30px;
 }
 
 .detaildiv {
@@ -123,12 +149,16 @@ body {
     margin-left: auto;
 }
 
-.todoEntry .brownbutton {
-    font-size: 20px;
-    background-color: #244855;
-    margin-right: 5px;
-}
 
 #addtodo:hover{
     background-color: #244855;
+}
+
+.detailbtn:hover{
+    background-color:#E64833;
+}
+.detailbtn {
+    font-size: 15px;
+    background-color: #244855;
+    margin-right: 5px;
 }
