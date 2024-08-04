@@ -8,10 +8,9 @@ class todoList {
         this.name = name;
     }
 
-    addEntry(name, desc, date){
-        let newTodo = new todoEntry(name, desc, date);
-        this.list.push(newTodo);
-        addTodoDOM(newTodo);
+    addEntry(todo){
+        this.list.push(todo);
+        addTodoDOM(todo);
     }
 }
 
@@ -23,10 +22,14 @@ class todoEntry {
     }
 }
 
-function addTodo(name, desc, date){
+function addTodo(todo){
     //add new todo entry to current list
-    currList.addEntry(name, desc, date);
+    currList.addEntry(todo);
+    entryEventHandlers(todo.name, todo.desc);
+}
 
+function entryEventHandlers(name, desc){
+    
     //add even listener to checkbox that deletes entry when clicked, fades away
     let todoentrydiv = document.getElementById(name + "div");
     
@@ -41,7 +44,6 @@ function addTodo(name, desc, date){
         let elementindex = currList.list.map(e => e.name).indexOf(name);
         currList.list.splice(elementindex, 1);
     });
-
 }
 
 function addButtons(){
@@ -82,6 +84,7 @@ function addList(list){
         list.list.forEach(element => {
             console.log("whATHATTS");
             addTodoDOM(element);
+            entryEventHandlers(element.name, element.desc);
         });
     });
     document.querySelector("#sidebarlist").appendChild(listBtn);
@@ -92,10 +95,9 @@ let testList = new todoList("test");
 let currList = mainList;  
 listOfLists.push(testList);
 listOfLists.push(mainList);
-addTodo("change layout, sidebar, main chunk inside this rounded div", "wwahahwa");
-addTodo("add details, date, priority, button to view for each task", "wahahsd");
-addTodo("ability to add new lists, swap in side bar", "please");
-addTodo("finish this todo app", "please");
+addTodo(new todoEntry("add details, date, priority, button to view for each task", "wahahsd"));
+addTodo(new todoEntry("ability to add new lists, swap in side bar", "please"));
+addTodo(new todoEntry("finish this todo app", "please"))    ;
 
 addList(mainList);
 addList(testList);
