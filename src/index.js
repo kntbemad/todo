@@ -3,14 +3,13 @@ import './style.css';
 
 
 class todoList {
-    constructor(name){
-        this.list = [];
+    constructor(name, list = []){
         this.name = name;
+        this.list = list;
     }
 
     addEntry(todo){
         this.list.push(todo);
-        addTodoDOM(todo);
     }
 }
 
@@ -25,8 +24,12 @@ class todoEntry {
 
 function addTodo(todo){
     //add new todo entry to current list
+    //console.log(currList.name + " help " + todo.name);
     currList.addEntry(todo);
-    entryEventHandlers(todo);
+    if(currList.name == document.querySelector(".todoList").id){
+       addTodoDOM(todo);       
+       entryEventHandlers(todo);
+    }  
 }
 
 function entryEventHandlers(todo){
@@ -42,6 +45,7 @@ function entryEventHandlers(todo){
         removeTodo(todo);
         currList.list.splice(todo.id, 1);
         updateIDs(todo);
+        storeList();
     });
 }
 
@@ -68,8 +72,8 @@ function addButtons(){
         let descformtext = document.getElementById("desc").value;
         let dateform = document.getElementById("date").value;
 
-
         addTodo(new todoEntry(nameformtext, descformtext, dateform));
+        storeList();
         e.preventDefault();
         closeForm(true);
     });
@@ -95,35 +99,65 @@ function addButtons(){
         }
         else {
             addList(new todoList(listname));
+            storeList();
             closeForm(false);
-            console.log(listOfLists);
+            //console.log(listOfLists);
         }
     });
 }
 
+function storeList(){
+    localStorage.setItem("storedData", JSON.stringify(listOfLists));
+}
+
 function addList(list){
     listOfLists.push(list);
+    addListButton(list);
+}
+
+function addListButton(list){
     let listBtn = document.createElement("button");
     listBtn.classList.add("listbutton");
+    
     listBtn.textContent = list.name;
     listBtn.addEventListener("click", () => {
+        let todoListDiv = document.querySelector(".todoList");
+        todoListDiv.replaceChildren();
         currList = list;
-        document.getElementById("main").replaceChildren();
+        todoListDiv.id = list.name;
         list.list.forEach(element => {
             addTodoDOM(element);
             entryEventHandlers(element);
         });
+        todoListDiv.id = currList.name;
     });
     document.querySelector("#sidebarlist").appendChild(listBtn);
 }
+
 let listOfLists = [];
-let mainList = new todoList("main");
-let currList = mainList;  
-addList(mainList);
-addTodo(new todoEntry("add details, date, priority, button to view for each task", "wahahsd"));
-addTodo(new todoEntry("ability to add new lists, swap in side bar", "please"));
-addTodo(new todoEntry("finish this todo app", "please"))    ;
+let storedData = localStorage.getItem("storedData");
+let currList = [];
+if(storedData == null){
+    localStorage.setItem("storedData", JSON.stringify(listOfLists));
+    let mainList = new todoList("main");
+    addList(mainList);
+    storeList();
+    currList = listOfLists[0];
+} else {
+    storedData = JSON.parse(storedData); 
+    storedData.forEach((element, index) => {
+        addList(new todoList(element.name));
+        currList = listOfLists[index];
+        element.list.forEach(todo => {
+            addTodo(new todoEntry(todo.name, todo.desc, todo.date));
+        });
+    });
+    currList = listOfLists[0];
+
+console.log(currList);
+}
 addButtons();
 
-
+console.log("list of lists: " + listOfLists[0].list);
+console.log(currList);
 

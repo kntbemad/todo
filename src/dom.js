@@ -6,6 +6,7 @@ export function addTodoDOM(todo){
 
     newTodo.appendChild(addTodoEntry(todo));
     newTodo.appendChild(addDetailBtn(todo)); 
+    console.log("addToDOM");
     todoList.appendChild(newTodo);
 }
 function addTodoEntry(todo){

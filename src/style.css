@@ -65,13 +65,6 @@ body {
     background-color:#663f35;
 }
 
-#sidebarlist button {
-    border: none;
-    border-radius: 5px;
-    background-color:#FBE9D0;
-    font-size: 20px;
-    width: 50%;
-}
 .todoList {
     display: flex;
     flex-direction: column;
@@ -178,4 +171,17 @@ body {
     font-size: 15px;
     background-color: #244855;
     margin-right: 5px;
+}
+
+.listbutton {
+
+    border: none;
+    border-radius: 5px;
+    background-color:#FBE9D0;
+    font-size: 20px;
+    width: 50%;
+}
+
+.listbutton:hover {
+    background-color: #cdb89b;
 }
