@@ -53,12 +53,12 @@ body {
 }
 
 #addlistdiv .brownbutton {
-    width: 100%;
+    width: 90%;
     height: 50px;
-    border-top-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    border-top-right-radius: 0px;
+    margin-bottom: 8px;
+    margin-left: 8px;
     font-size: 20px;
+    box-shadow: 3px 3px 3px black;
 }
 
 #addlistdiv .brownbutton:hover {
@@ -159,7 +159,9 @@ body {
     margin-left: auto;
 }
 
-
+#addlistdiv ul {
+    list-style-type: none;
+}
 #addtodo:hover{
     background-color: #663f35;
 }
@@ -174,14 +176,29 @@ body {
 }
 
 .listbutton {
-
     border: none;
     border-radius: 5px;
     background-color:#FBE9D0;
     font-size: 20px;
-    width: 50%;
+    width: 60%;
+    box-shadow: 3px 3px 3px black;
+}
+
+.deletebtn{
+    font-size: 10px; 
+    line-height: 0px;
+    width: 15px;
+    height: 15px;
 }
 
 .listbutton:hover {
     background-color: #cdb89b;
+}
+
+.listbuttondiv{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
 }

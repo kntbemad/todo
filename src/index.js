@@ -2,6 +2,10 @@ import {addTodoDOM, showForm, closeForm, removeTodo, showDetails} from "./dom.js
 import './style.css';
 
 
+let listOfLists = [];
+let storedData = localStorage.getItem("storedData");
+let currList = [];
+
 class todoList {
     constructor(name, list = []){
         this.name = name;
@@ -60,7 +64,7 @@ function updateIDs(todo){
         }
 }
 
-function addButtons(){
+function addListeners(){
     let addformbtn = document.querySelector("#addtodo");
     addformbtn.addEventListener("click", () => {
         showForm(true);
@@ -117,9 +121,31 @@ function addList(list){
 
 function addListButton(list){
     let listBtn = document.createElement("button");
+    let listDeleteBtn = document.createElement("button");
+    let listBtnDiv = document.createElement("div");
+
+    listBtnDiv.classList.add("listbuttondiv");
     listBtn.classList.add("listbutton");
-    
+    listDeleteBtn.classList.add("listbutton");
+    listDeleteBtn.classList.add("deletebtn");
+
     listBtn.textContent = list.name;
+    listDeleteBtn.textContent = "x";
+
+    listDeleteBtn.addEventListener("click", () => {
+
+        if(list.list.length > 0){
+            alert("Cannot delete list with entries");
+            return;
+        }
+
+        if(confirm("Do you really want to delete this?")){
+            listOfLists.splice(listOfLists.indexOf(list), 1);
+            document.querySelector("#sidebarlist").removeChild(listBtnDiv);
+            storeList();
+        } 
+    });
+
     listBtn.addEventListener("click", () => {
         let todoListDiv = document.querySelector(".todoList");
         todoListDiv.replaceChildren();
@@ -131,12 +157,13 @@ function addListButton(list){
         });
         todoListDiv.id = currList.name;
     });
-    document.querySelector("#sidebarlist").appendChild(listBtn);
+    
+    listBtnDiv.appendChild(listBtn);
+    listBtnDiv.appendChild(listDeleteBtn);
+
+    document.querySelector("#sidebarlist").appendChild(listBtnDiv);
 }
 
-let listOfLists = [];
-let storedData = localStorage.getItem("storedData");
-let currList = [];
 if(storedData == null){
     localStorage.setItem("storedData", JSON.stringify(listOfLists));
     let mainList = new todoList("main");
@@ -153,11 +180,7 @@ if(storedData == null){
         });
     });
     currList = listOfLists[0];
-
-console.log(currList);
 }
-addButtons();
+addListeners();
 
-console.log("list of lists: " + listOfLists[0].list);
-console.log(currList);
 
