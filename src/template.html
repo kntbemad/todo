@@ -6,7 +6,7 @@
     <title>Todo</title>
 </head>
 <body>
-    <div id="addformdiv">
+    <div id="addformdiv" class="popupform">
         <form action="" method="post" id="addform">
             <ul>
                 <li>
@@ -28,6 +28,19 @@
         </form>
     </div>
 
+    <div id="addlistdiv" class="popupform">
+        <form action="" method="post" id="addlistform">
+            <ul>
+                <li>
+                    <label for="listname">Name:</label>
+                    <input type="text" id="listname" name="todoname">
+                </li>
+            </ul>
+            <div id="listbuttondiv">
+                <button id="submitlistform">Submit</button>
+            </div>
+        </form>
+    </div>
     <div id="detailPane">
         <p id="detailDesc"></p>
         <p id="detailDate"></p>
@@ -39,6 +52,9 @@
     <div class="maindiv">
         <nav id="sidebar">
             <div id="sidebarlist">
+            </div>
+            <div id="addlistdiv">
+                <button class="brownbutton" id="addlistbtn">Add Todo List</button>
             </div>
         </nav> 
         <div class="maincontainer" id="maincontainer"> 

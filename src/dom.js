@@ -46,14 +46,24 @@ function addDetailBtn(todo){
     return detaildiv;
 }
 
-export function showForm(){
+export function showForm(regform){
+    if(regform){
     document.querySelector("#addformdiv").style.display = "block";
+    }
+    else{
+        document.querySelector("#addlistdiv").style.display = "block";
+    }
 }
 
 
-export function closeForm(){
-    document.getElementById("addform").reset();
-    document.querySelector("#addformdiv").style.display = "none";
+export function closeForm(isreg){
+    if(isreg){ 
+        document.getElementById("addform").reset();
+        document.querySelector("#addformdiv").style.display = "none";
+    } else {
+        document.getElementById("addlistform").reset();
+        document.querySelector("#addlistdiv").style.display = "none";
+    }
 }
 
 export function removeTodo(todo){

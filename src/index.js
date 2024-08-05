@@ -11,7 +11,6 @@ class todoList {
     addEntry(todo){
         this.list.push(todo);
         addTodoDOM(todo);
-        console.log(todo);
     }
 }
 
@@ -60,7 +59,7 @@ function updateIDs(todo){
 function addButtons(){
     let addformbtn = document.querySelector("#addtodo");
     addformbtn.addEventListener("click", () => {
-        showForm();
+        showForm(true);
     });
 
     let submitbtn = document.querySelector("#submitform");
@@ -71,9 +70,8 @@ function addButtons(){
 
 
         addTodo(new todoEntry(nameformtext, descformtext, dateform));
-        console.log("help");
         e.preventDefault();
-        closeForm();
+        closeForm(true);
     });
 
     let closedetailBtn = document.querySelector("#closedetailbtn");
@@ -81,18 +79,37 @@ function addButtons(){
         let detailPane = document.getElementById("detailPane");
         detailPane.style.display = "none";
     });
+
+    let addlistbtn = document.querySelector("#addlistbtn");
+    addlistbtn.addEventListener("click", e =>{
+        showForm(false);
+    });
+
+    
+    let submitlistbtn = document.querySelector("#submitlistform");
+    submitlistbtn.addEventListener("click", e =>{
+        e.preventDefault();
+        let listname = document.getElementById("listname").value;
+        if(listname.length > 8){
+            alert("list name must be less than 8 characters");
+        }
+        else {
+            addList(new todoList(listname));
+            closeForm(false);
+            console.log(listOfLists);
+        }
+    });
 }
 
 function addList(list){
+    listOfLists.push(list);
     let listBtn = document.createElement("button");
     listBtn.classList.add("listbutton");
     listBtn.textContent = list.name;
     listBtn.addEventListener("click", () => {
-        console.log(list);
         currList = list;
         document.getElementById("main").replaceChildren();
         list.list.forEach(element => {
-            console.log("whATHATTS");
             addTodoDOM(element);
             entryEventHandlers(element);
         });
@@ -101,16 +118,11 @@ function addList(list){
 }
 let listOfLists = [];
 let mainList = new todoList("main");
-let testList = new todoList("test");
 let currList = mainList;  
-listOfLists.push(testList);
-listOfLists.push(mainList);
+addList(mainList);
 addTodo(new todoEntry("add details, date, priority, button to view for each task", "wahahsd"));
 addTodo(new todoEntry("ability to add new lists, swap in side bar", "please"));
 addTodo(new todoEntry("finish this todo app", "please"))    ;
-
-addList(mainList);
-addList(testList);
 addButtons();
 
 
