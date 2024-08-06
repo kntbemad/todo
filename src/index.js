@@ -156,6 +156,7 @@ function addListButton(list){
             entryEventHandlers(element);
         });
         todoListDiv.id = currList.name;
+        document.querySelector("#listNameText").textContent = currList.name;
     });
     
     listBtnDiv.appendChild(listBtn);
@@ -180,6 +181,7 @@ if(storedData == null){
         });
     });
     currList = listOfLists[0];
+    document.querySelector("#listNameText").textContent = currList.name;
 }
 addListeners();
 

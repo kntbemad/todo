@@ -52,7 +52,7 @@ export function showForm(regform){
     document.querySelector("#addformdiv").style.display = "block";
     }
     else{
-        document.querySelector("#addlistdiv").style.display = "block";
+        document.querySelector("#addlistformdiv").style.display = "flex";
     }
 }
 
@@ -63,7 +63,7 @@ export function closeForm(isreg){
         document.querySelector("#addformdiv").style.display = "none";
     } else {
         document.getElementById("addlistform").reset();
-        document.querySelector("#addlistdiv").style.display = "none";
+        document.querySelector("#addlistformdiv").style.display = "none";
     }
 }
 
