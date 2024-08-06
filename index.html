@@ -23,21 +23,17 @@
                 </li>
             </ul>
             <div id="buttondiv">
-                <button id="submitform">Submit</button>
+                <button id="submitform" class="brownbutton">Submit</button>
             </div>
         </form>
     </div>
 
-    <div id="addlistdiv" class="popupform">
+    <div id="addlistformdiv" class="popupform">
         <form action="" method="post" id="addlistform">
-            <ul>
-                <li>
                     <label for="listname">Name:</label>
                     <input type="text" id="listname" name="todoname">
-                </li>
-            </ul>
             <div id="listbuttondiv">
-                <button id="submitlistform">Submit</button>
+                <button id="submitlistform" class="brownbutton">Submit</button>
             </div>
         </form>
     </div>
@@ -58,9 +54,14 @@
             </div>
         </nav> 
         <div class="maincontainer" id="maincontainer"> 
-            <div id="buttondiv">
-                <button class="brownbutton" id="addtodo">+</button>           
-            </div>
+            <div id="topbar">
+                <div id="listName">
+                    <p id="listNameText"></p>
+                </div>
+                <div id="buttondiv">
+                    <button class="brownbutton" id="addtodo">+</button>           
+                </div>
+            </div> 
             <div class="todoList" id="main">
 
             </div>
